@@ -1,0 +1,29 @@
+.creator-page {
+  padding: 2rem;
+  background: #f9f9f9;
+}
+
+.dev-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.dev-card {
+  flex: 1 1 200px;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dev-card h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.dev-card a {
+  color: #0073e6;
+  text-decoration: none;
+}

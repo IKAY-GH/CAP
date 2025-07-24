@@ -1,0 +1,48 @@
+.accueil-container {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../../assets/images/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 120;
+}
+
+h1 {
+  padding: .5rem;
+  font-family: "PiecesOfEight", serif;
+  color: #3b3b3b;
+  font-size: 8vh;
+  text-align: center;
+}
+
+.exclamation-mark {
+  color: #c22121;
+}
+.btn-start {
+  border-radius: 9999px;
+  background-color: rgb(255, 128, 0);
+  padding: 20px 40px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  font-size: 2rem;
+}
+
+@media screen and (min-width: 769px) {
+  h1 {
+    max-width: 640px;
+    color: #3b3b3b;
+    font-size: 8vh;
+    text-align: center;
+  }
+  .exclamation-mark {
+    color: #c22121;
+  }
+}

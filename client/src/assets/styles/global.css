@@ -1,0 +1,46 @@
+:root {
+  --font-family: "helvetica";
+  --color-bg: #f0f0f0;
+  --color-text: #333;
+  --color-primary: rgb(0, 255, 187);
+  --color-primary-focus-shadow: rgba(0, 255, 187, 0.6);
+  --color-dark: #222;
+  --color-light: white;
+  --color-btn-hover: silver;
+
+  --border-radius: 10px;
+  --transition: 0.3s ease;
+}
+
+@font-face {
+  font-family: "PiecesOfEight";
+  src: url("../../assets/font/pieces_of_eight/Pieces of Eight.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-family), Arial, Helvetica, sans-serif;
+}
+
+button {
+  padding: 0.4rem 1rem;
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
