@@ -1,17 +1,18 @@
+/* Mobile-first creator page */
 .creator-page {
-  padding: 2rem;
+  padding: 1rem;
   background: #f9f9f9;
+  min-height: 100vh;
 }
 
 .dev-cards {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
   margin-top: 1rem;
 }
 
 .dev-card {
-  flex: 1 1 200px;
   border: 1px solid #ddd;
   padding: 1rem;
   border-radius: 8px;
@@ -21,9 +22,41 @@
 
 .dev-card h3 {
   margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
 }
 
 .dev-card a {
   color: #0073e6;
   text-decoration: none;
+}
+
+/* Tablet styles */
+@media screen and (min-width: 768px) {
+  .creator-page {
+    padding: 1.5rem;
+  }
+
+  .dev-cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .dev-card {
+    flex: 1 1 200px;
+  }
+
+  .dev-card h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Desktop styles */
+@media screen and (min-width: 1024px) {
+  .creator-page {
+    padding: 2rem;
+  }
+
+  .dev-card {
+    flex: 1 1 250px;
+  }
 }

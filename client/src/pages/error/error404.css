@@ -1,3 +1,4 @@
+/* Mobile-first error page */
 .erreur-page {
   min-height: 100vh;
   display: flex;
@@ -8,22 +9,23 @@
   color: #40e0d0;
   font-family: "RetroGaming", monospace;
   text-align: center;
-  padding: 20px;
+  padding: 15px;
 }
 
 .erreur-page h1 {
-  font-size: 10rem;
-  margin-bottom: 20px;
+  font-size: 4rem;
+  margin-bottom: 15px;
 }
 
 .erreur-page p {
-  font-size: 2rem;
-  margin-bottom: 40px;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  max-width: 90%;
 }
 
 .erreur-button {
-  font-size: 1.5rem;
-  padding: 15px 30px;
+  font-size: 1rem;
+  padding: 12px 24px;
   background-color: #ff8000;
   color: white;
   border: none;
@@ -35,4 +37,42 @@
 .erreur-button:hover {
   background-color: orange;
   box-shadow: 0 0 15px red, 0 0 7px red inset;
+}
+
+/* Tablet styles */
+@media screen and (min-width: 768px) {
+  .erreur-page {
+    padding: 20px;
+  }
+
+  .erreur-page h1 {
+    font-size: 8rem;
+    margin-bottom: 20px;
+  }
+
+  .erreur-page p {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+
+  .erreur-button {
+    font-size: 1.3rem;
+    padding: 14px 28px;
+  }
+}
+
+/* Desktop styles */
+@media screen and (min-width: 1024px) {
+  .erreur-page h1 {
+    font-size: 10rem;
+  }
+
+  .erreur-page p {
+    font-size: 2rem;
+  }
+
+  .erreur-button {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+  }
 }

@@ -1,7 +1,9 @@
+/* Mobile-first sign in */
 .connexion-container {
-  max-width: 400px;
-  margin: 15% 40%;
-  padding: 30px;
+  width: 90%;
+  max-width: 350px;
+  margin: 20% auto;
+  padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #f9f9f9;
@@ -22,11 +24,12 @@ label {
   margin-bottom: 6px;
   font-weight: 600;
   color: #333;
+  font-size: 0.9rem;
 }
 
 input[type="email"],
 input[type="password"] {
-  padding: 10px;
+  padding: 12px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -43,14 +46,14 @@ input[type="password"]:focus {
 
 .form-error {
   color: #d9534f;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   margin-top: -10px;
   margin-bottom: 15px;
 }
 
 #btn-connexion {
-  padding: 12px;
-  font-size: 1.1rem;
+  padding: 14px;
+  font-size: 1rem;
   background-color: #007bff;
   color: white;
   border: none;
@@ -66,4 +69,33 @@ input[type="password"]:focus {
 #btn-connexion:disabled {
   background-color: #a0a0a0;
   cursor: not-allowed;
+}
+
+/* Tablet styles */
+@media screen and (min-width: 768px) {
+  .connexion-container {
+    max-width: 400px;
+    margin: 15% auto;
+    padding: 30px;
+  }
+
+  label {
+    font-size: 1rem;
+  }
+
+  .form-error {
+    font-size: 0.875rem;
+  }
+
+  #btn-connexion {
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+}
+
+/* Desktop styles */
+@media screen and (min-width: 1024px) {
+  .connexion-container {
+    margin: 10% auto;
+  }
 }

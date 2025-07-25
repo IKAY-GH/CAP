@@ -23,8 +23,10 @@ CREATE TABLE IF NOT EXISTS `franck`.`task` (
   `description` VARCHAR(10000) NULL DEFAULT NULL,
   `is_done` TINYINT NOT NULL,
   `moment` ENUM('avant', 'pendant', 'aprés') NOT NULL,
+  `game_id` INT NULL,
   PRIMARY KEY (`idtask`),
-  UNIQUE INDEX `idtask_UNIQUE` (`idtask` ASC) VISIBLE)
+  UNIQUE INDEX `idtask_UNIQUE` (`idtask` ASC) VISIBLE,
+  INDEX `fk_task_game_idx` (`game_id` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -53,15 +55,8 @@ CREATE TABLE IF NOT EXISTS `franck`.`game` (
   `other_material` VARCHAR(500) NOT NULL,
   `rules` TEXT NULL DEFAULT NULL,
   `variant` TEXT NULL DEFAULT NULL,
-  `task_idtask` INT NOT NULL,
-  PRIMARY KEY (`id`, `task_idtask`),
-  UNIQUE INDEX `idGame_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_game_task_idx` (`task_idtask` ASC) VISIBLE,
-  CONSTRAINT `fk_game_task`
-    FOREIGN KEY (`task_idtask`)
-    REFERENCES `franck`.`task` (`idtask`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `idGame_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
@@ -90,16 +85,15 @@ DROP TABLE IF EXISTS `franck`.`prepared_game` ;
 
 CREATE TABLE IF NOT EXISTS `franck`.`prepared_game` (
   `game_id` INT NOT NULL,
-  `game_task_idtask` INT NOT NULL,
   `user_iduser` INT NOT NULL,
-  PRIMARY KEY (`game_id`, `game_task_idtask`, `user_iduser`),
+  PRIMARY KEY (`game_id`, `user_iduser`),
   INDEX `fk_game_has_user_user1_idx` (`user_iduser` ASC) VISIBLE,
-  INDEX `fk_game_has_user_game1_idx` (`game_id` ASC, `game_task_idtask` ASC) VISIBLE,
-  CONSTRAINT `fk_game_has_user_game1`
-    FOREIGN KEY (`game_id` , `game_task_idtask`)
-    REFERENCES `franck`.`game` (`id` , `task_idtask`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_prepared_game_game_idx` (`game_id` ASC) VISIBLE,
+  CONSTRAINT `fk_prepared_game_game`
+    FOREIGN KEY (`game_id`)
+    REFERENCES `franck`.`game` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_game_has_user_user1`
     FOREIGN KEY (`user_iduser`)
     REFERENCES `franck`.`user` (`iduser`)
@@ -109,6 +103,16 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
+
+-- -----------------------------------------------------
+-- Adding foreign key constraints
+-- -----------------------------------------------------
+ALTER TABLE `franck`.`task` 
+ADD CONSTRAINT `fk_task_game`
+  FOREIGN KEY (`game_id`)
+  REFERENCES `franck`.`game` (`id`)
+  ON DELETE SET NULL
+  ON UPDATE CASCADE;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
