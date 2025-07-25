@@ -252,6 +252,13 @@ function Results() {
                 >
                   📥 Télécharger cette activité
                 </button>
+                <button
+                  className="btn-todolist"
+                  onClick={() => navigate(`/todolist/${game.id}`)}
+                  type="button"
+                >
+                  📝 Créer une to-do list
+                </button>
               </div>
             </div>
           ))}

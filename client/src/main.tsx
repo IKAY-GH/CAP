@@ -11,6 +11,7 @@ import GCU from "./pages/gcu/gcu.tsx";
 import Home from "./pages/home/home";
 import LegalNotices from "./pages/legalNotices/legalNotices";
 import Results from "./pages/results/results";
+import ToDoList from "./pages/todolist/todolist";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
       {
         path: "/results",
         element: <Results />,
+      },
+
+      {
+        path: "/todolist/:gameId",
+        element: <ToDoList />,
       },
 
       {
