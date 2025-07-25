@@ -1,7 +1,9 @@
+/* Mobile-first sign up */
 .inscription-container {
-  max-width: 500px;
-  margin: auto 40%;
-  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  margin: 10% auto;
+  padding: 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -15,11 +17,12 @@ form {
 label {
   margin-top: 15px;
   font-weight: bold;
+  font-size: 0.9rem;
 }
 
 input {
   margin-top: 5px;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 16px;
@@ -27,13 +30,13 @@ input {
 
 .form-error {
   color: red;
-  font-size: 14px;
+  font-size: 12px;
   margin-top: 5px;
 }
 
 #btn-valide {
   margin-top: 20px;
-  padding: 12px;
+  padding: 14px;
   font-size: 16px;
   background-color: #007bff;
   color: white;
@@ -47,8 +50,33 @@ input {
   background-color: #0056b3;
 }
 
-@media screen and (max-width: 768px) {
-  main {
-    width: 300px;
+/* Tablet styles */
+@media screen and (min-width: 768px) {
+  .inscription-container {
+    max-width: 500px;
+    padding: 30px;
+  }
+
+  label {
+    font-size: 1rem;
+  }
+
+  input {
+    padding: 10px;
+  }
+
+  .form-error {
+    font-size: 14px;
+  }
+
+  #btn-valide {
+    padding: 12px;
+  }
+}
+
+/* Desktop styles */
+@media screen and (min-width: 1024px) {
+  .inscription-container {
+    margin: 5% auto;
   }
 }

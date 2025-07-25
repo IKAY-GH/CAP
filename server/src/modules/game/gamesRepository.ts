@@ -5,46 +5,111 @@ import type { Result, Rows } from "../../../database/client";
 type Game = {
   id: number;
   title: string;
-  main_objective_1: string;
-  main_objective_2: string;
+  main_objective_1: string | null;
+  main_objective_2: string | null;
+  main_objective_3: string | null;
+  age_of_audience: number;
+  duration: number;
+  number_of_players: number;
+  type_of: string;
+  moment_of_day: string | null;
+  place: string;
+  no_material: string;
+  art_material: string;
+  sport_material: string;
+  other_material: string;
+  rules: string | null;
+  variant: string | null;
+  // Suppression de task_idtask - un jeu ne dépend pas d'une tâche
+};
 
-  description: string;
-  is_done: boolean;
-  moment: string;
+type GameFilters = {
+  age_of_audience?: number;
+  duration?: number;
+  number_of_players?: number;
+  type_of?: string;
+  place?: string;
 };
 
 class GameRepository {
   // The C of CRUD - Create operation
-
   async create(game: Omit<Game, "id">) {
-    // Execute the SQL INSERT query to add a new game to the "game" table
     const [result] = await databaseClient.query<Result>(
-      "insert into game (title, user_id) values (?, ?)",
-      [game.title],
+      `insert into game (
+        title, main_objective_1, main_objective_2, main_objective_3,
+        age_of_audience, duration, number_of_players, type_of,
+        moment_of_day, place, no_material, art_material,
+        sport_material, other_material, rules, variant
+      ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        game.title,
+        game.main_objective_1,
+        game.main_objective_2,
+        game.main_objective_3,
+        game.age_of_audience,
+        game.duration,
+        game.number_of_players,
+        game.type_of,
+        game.moment_of_day,
+        game.place,
+        game.no_material,
+        game.art_material,
+        game.sport_material,
+        game.other_material,
+        game.rules,
+        game.variant,
+      ],
     );
 
-    // Return the ID of the newly inserted game
     return result.insertId;
   }
 
   // The Rs of CRUD - Read operations
-
   async read(id: number) {
-    // Execute the SQL SELECT query to retrieve a specific game by its ID
     const [rows] = await databaseClient.query<Rows>(
       "select * from game where id = ?",
       [id],
     );
 
-    // Return the first row of the result, which represents the game
     return rows[0] as Game;
   }
 
   async readAll() {
-    // Execute the SQL SELECT query to retrieve all games from the "game" table
     const [rows] = await databaseClient.query<Rows>("select * from game");
+    return rows as Game[];
+  }
 
-    // Return the array of games
+  // Recherche avec filtres
+  async searchWithFilters(filters: GameFilters) {
+    let query = "select * from game where 1=1";
+    const params: (number | string)[] = [];
+
+    if (filters.age_of_audience) {
+      query += " and age_of_audience <= ?";
+      params.push(filters.age_of_audience);
+    }
+
+    if (filters.duration) {
+      query += " and duration <= ?";
+      params.push(filters.duration);
+    }
+
+    if (filters.number_of_players) {
+      query += " and number_of_players >= ?";
+      params.push(filters.number_of_players);
+    }
+
+    if (filters.type_of) {
+      query += " and type_of = ?";
+      params.push(filters.type_of);
+    }
+
+    if (filters.place) {
+      query += " and place = ?";
+      params.push(filters.place);
+    }
+
+    const [rows] = await databaseClient.query<Rows>(query, params);
     return rows as Game[];
   }
 

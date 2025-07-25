@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router";
 import "./assets/styles/global.css";
 import App from "./App";
+import Search from "./components/search/search.tsx";
 import SignIn from "./pages/auth/signIn.tsx";
 import Creator from "./pages/creator/creator";
 import Error404 from "./pages/error/error404.tsx";
@@ -27,6 +28,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+
+      {
+        path: "/search",
+        element: <Search />,
       },
 
       {
