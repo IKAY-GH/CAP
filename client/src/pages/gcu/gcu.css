@@ -2,22 +2,29 @@
   padding: 2rem;
   max-width: 900px;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
-  color: #333;
+  font-family: var(--font-family);
+  color: var(--color-text);
   line-height: 1.7;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  margin-top: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .gcu-container h1 {
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #111;
+  color: var(--color-text);
+  text-align: center;
+  font-weight: bold;
 }
 
 .gcu-container h2 {
   font-size: 1.3rem;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
-  color: #444;
+  color: var(--color-buttons);
+  font-weight: 600;
 }
 
 .gcu-container p {
@@ -25,10 +32,12 @@
 }
 
 .gcu-container a {
-  color: #0077cc;
+  color: var(--color-buttons);
   text-decoration: none;
+  font-weight: 500;
 }
 
 .gcu-container a:hover {
+  color: #e55a28;
   text-decoration: underline;
 }

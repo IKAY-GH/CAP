@@ -1,10 +1,10 @@
 /* Mobile-First: Base styles pour petits écrans */
 .todolist-container {
   min-height: 100vh;
-  padding: 2rem 1rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 80px 1rem 100px 1rem; /* Espace pour navbar et footer */
+  background: transparent; /* Utilise le background global */
   color: #3b3b3b;
-  font-family: "PiecesOfEight", Arial, sans-serif;
+  font-family: var(--font-family);
 }
 
 .todolist-header {
@@ -225,7 +225,7 @@
   align-self: center;
   width: 3rem;
   height: 3rem;
-  background: linear-gradient(135deg, #28a745, #20c997);
+  background: #f57336; /* Orange uniforme */
   border: none;
   border-radius: 50%;
   color: white;
@@ -237,7 +237,7 @@
 }
 
 .add-task-btn:hover {
-  background: linear-gradient(135deg, #218838, #1ea57a);
+  background: #e55a28; /* Orange hover */
   transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
@@ -254,12 +254,13 @@
 }
 
 .btn-back {
-  background-color: #6c757d;
+  background-color: #f57336; /* Orange des boutons */
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 25px;
   font-size: 1rem;
+  font-family: var(--font-family);
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
@@ -271,12 +272,12 @@
 }
 
 .btn-back:hover {
-  background-color: #5a6268;
+  background-color: #e55a28; /* Orange hover */
   transform: translateY(-2px);
 }
 
 .btn-download-todolist {
-  background: linear-gradient(135deg, #007bff 0%, #6610f2 100%);
+  background: #f57336; /* Orange uniforme */
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -295,7 +296,7 @@
 }
 
 .btn-download-todolist:hover {
-  background: linear-gradient(135deg, #0056b3 0%, #520dc2 100%);
+  background: #e55a28; /* Orange hover */
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }

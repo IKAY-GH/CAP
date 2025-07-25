@@ -1,12 +1,12 @@
 .accueil-container {
   min-height: 100vh;
   width: 100vw;
-  background: linear-gradient(135deg, #ff8a00 0%, #ffb84d 100%);
+  background: transparent; /* Utiliser le background global */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 1rem 0.5rem;
+  padding: 80px 0.5rem 100px 0.5rem; /* Espace pour navbar et footer */
   box-sizing: border-box;
 }
 
@@ -102,23 +102,24 @@ h1 {
 .btn-search {
   width: 100%;
   border-radius: 50px;
-  background: linear-gradient(135deg, #ff6b35 0%, #ff8a00 100%);
+  background: #f57336; /* Orange des boutons */
   color: white;
   padding: 0.8rem 1.5rem;
   border: none;
   cursor: pointer;
   font-size: 1.1rem;
+  font-family: var(--font-family);
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+  box-shadow: 0 4px 15px rgba(245, 115, 54, 0.4);
 }
 
 .btn-search:hover {
-  background: linear-gradient(135deg, #ff5722 0%, #ff6b35 100%);
+  background: #e55a28; /* Orange hover */
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+  box-shadow: 0 6px 20px rgba(245, 115, 54, 0.6);
 }
 
 .btn-search:active {

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import logoImage from "../../assets/images/5a71058a-208f-4820-963a-69c5f7e0c922.png";
 
 function HomeButton() {
   const navigate = useNavigate();
@@ -7,16 +8,14 @@ function HomeButton() {
     navigate("/");
   }
   return (
-    <button onClick={handleclick} type="button">
-      <svg
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        width="2em"
-        height="2em"
-        viewBox="0 0 24 24"
-      >
-        <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8z" />
-      </svg>
+    <button onClick={handleclick} type="button" className="logo-button">
+      <img
+        src={logoImage}
+        alt="Logo"
+        className="logo-image"
+        width="40"
+        height="40"
+      />
     </button>
   );
 }
