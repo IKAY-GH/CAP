@@ -1,0 +1,284 @@
+/* Styles pour la page À propos */
+.about-container {
+  min-height: 100vh;
+  padding: 80px 1rem 100px 1rem; /* Espace pour navbar et footer */
+  background: transparent; /* Utilise le background global */
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: var(--font-family);
+  color: #3b3b3b;
+}
+
+.about-container h1 {
+  font-family: "PiecesOfEight", serif;
+  color: #3b3b3b;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.site-identity,
+.creator-section {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 3px solid #ffb733;
+}
+
+.site-identity h2,
+.creator-section h2 {
+  color: #f57336;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.site-identity p {
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-item {
+  background: rgba(255, 183, 51, 0.1);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border-left: 4px solid #ffb733;
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+}
+
+.feature-item h3 {
+  color: #f57336;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.feature-item p {
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.mission {
+  background: rgba(245, 115, 54, 0.1);
+  padding: 2rem;
+  border-radius: 15px;
+  border-left: 4px solid #f57336;
+  margin-top: 2rem;
+}
+
+.mission h3 {
+  color: #f57336;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.mission p {
+  line-height: 1.7;
+  font-size: 1.1rem;
+  margin: 0;
+  font-style: italic;
+}
+
+.creator-section p {
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.creator-link {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #f57336 0%, #ffb733 100%);
+  color: white;
+  text-decoration: none;
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(245, 115, 54, 0.3);
+}
+
+.creator-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(245, 115, 54, 0.4);
+  text-decoration: none;
+  color: white;
+}
+
+.creator-link span {
+  font-size: 3rem;
+  flex-shrink: 0;
+}
+
+.creator-link div {
+  flex: 1;
+}
+
+.creator-link strong {
+  font-size: 1.3rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.creator-link p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .about-container {
+    padding: 80px 0.5rem 100px 0.5rem;
+  }
+
+  .about-container h1 {
+    font-size: 2rem;
+  }
+
+  .site-identity,
+  .creator-section {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .site-identity h2,
+  .creator-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .site-identity p {
+    font-size: 1rem;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .feature-item {
+    padding: 1rem;
+  }
+
+  .feature-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .feature-item p {
+    font-size: 0.9rem;
+  }
+
+  .mission {
+    padding: 1.5rem;
+  }
+
+  .mission h3 {
+    font-size: 1.2rem;
+  }
+
+  .mission p {
+    font-size: 1rem;
+  }
+
+  .creator-link {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .creator-link span {
+    font-size: 2.5rem;
+  }
+
+  .creator-link strong {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .about-container {
+    padding: 100px 2rem 120px 2rem;
+  }
+
+  .about-container h1 {
+    font-size: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  .site-identity,
+  .creator-section {
+    padding: 3rem;
+  }
+
+  .site-identity h2,
+  .creator-section h2 {
+    font-size: 2rem;
+  }
+
+  .site-identity p {
+    font-size: 1.2rem;
+  }
+
+  .features {
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .feature-item {
+    padding: 2rem;
+  }
+
+  .feature-item h3 {
+    font-size: 1.4rem;
+  }
+
+  .feature-item p {
+    font-size: 1.1rem;
+  }
+
+  .mission {
+    padding: 2.5rem;
+  }
+
+  .mission h3 {
+    font-size: 1.5rem;
+  }
+
+  .mission p {
+    font-size: 1.2rem;
+  }
+
+  .creator-link {
+    padding: 2rem 2.5rem;
+  }
+
+  .creator-link span {
+    font-size: 3.5rem;
+  }
+
+  .creator-link strong {
+    font-size: 1.4rem;
+  }
+
+  .creator-link p {
+    font-size: 1.1rem;
+  }
+}

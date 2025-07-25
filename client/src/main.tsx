@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 import "./assets/styles/global.css";
 import App from "./App";
 import Search from "./components/search/search.tsx";
+import About from "./pages/about/about";
 import AdvancedSearch from "./pages/advancedSearchConstruct/advancedSearchConstruct.tsx";
 import { SignUp } from "./pages/auth/index.ts";
 import SignIn from "./pages/auth/signIn.tsx";
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/creator",
         element: <Creator />,
+      },
+      {
+        path: "/a_propos",
+        element: <About />,
       },
       {
         path: "/Erreur",
