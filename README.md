@@ -4,12 +4,6 @@ REPOSITORY CHECKPOINT 4 Wild Code School/Simplon
 
 #DataBase: ![Database modeling](./client/src/assets/images/Modelisation_bdd_cap.png)
 
-#Backlog:ORY CHECKPOINT 4 Wild Code School/Simplon
-
-#Wireframe: "https://www.figma.com/design/gxQsrpfYrEFrIp4LnalwTI/CAP-?node-id=118-401&p=f&t=qmrpdwQfCzrPnyMn-0"
-
-#DataBase: ![Database modeling](./client/src/assets/images/Modelisation_bdd_cap.png)
-
 #Backlog: 
 
 US1/home-page
