@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import HomeButton from "./homeButton";
 import "./navigation.css";
@@ -9,13 +9,16 @@ function Navigation() {
   const menuRef = useRef<HTMLElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
 
+  // Fonction pour fermer le menu avec useCallback pour éviter les re-rendus
+  const handleCloseMenu = useCallback(() => {
+    setCloseMenu(true);
+    setOpenMenu(false);
+  }, []);
+
   useEffect(() => {
     const animationClose = () => {
       if (!openMenu || closeMenu) return;
-
-      setCloseMenu(true);
-      setOpenMenu(false);
-      setCloseMenu(false);
+      handleCloseMenu();
     };
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -34,15 +37,12 @@ function Navigation() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [openMenu, closeMenu]);
+  }, [openMenu, closeMenu, handleCloseMenu]);
 
   useEffect(() => {
     const closeMenuAvecAnimation = () => {
       if (!openMenu || closeMenu) return;
-
-      setCloseMenu(true);
-      setOpenMenu(false);
-      setCloseMenu(false);
+      handleCloseMenu();
     };
 
     function handleKeyDown(event: KeyboardEvent) {
@@ -56,7 +56,7 @@ function Navigation() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [openMenu, closeMenu]);
+  }, [openMenu, closeMenu, handleCloseMenu]);
 
   return (
     <>
@@ -65,30 +65,22 @@ function Navigation() {
         {openMenu && (
           <ul className="links">
             <li>
-              <Link to={"/Connexion"}>Connexion</Link>
+              <Link onClick={handleCloseMenu} to={"/Connexion"}>
+                Connexion
+              </Link>
             </li>
             <li>
-              <Link to={"/Inscription"}>Inscription</Link>
+              <Link onClick={handleCloseMenu} to={"/Inscription"}>
+                Inscription
+              </Link>
             </li>
             <li>
-              <Link
-                onClick={() => {
-                  setCloseMenu(true);
-                  setOpenMenu(false);
-                }}
-                to="/advanced_search"
-              >
+              <Link onClick={handleCloseMenu} to="/advanced_search">
                 Recherche avancée
               </Link>
             </li>
             <li>
-              <Link
-                onClick={() => {
-                  setCloseMenu(true);
-                  setOpenMenu(false);
-                }}
-                to="/a_propos"
-              >
+              <Link onClick={handleCloseMenu} to="/a_propos">
                 A propos
               </Link>
             </li>
