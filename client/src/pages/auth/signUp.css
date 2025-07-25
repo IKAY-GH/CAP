@@ -1,4 +1,3 @@
-/* Mobile-first approach for SignUp page */
 .inscription-container {
   max-width: 90%;
   margin: 2rem auto;
@@ -115,7 +114,6 @@
   transform: none;
 }
 
-/* Tablet styles */
 @media (min-width: 768px) {
   .inscription-container {
     max-width: 500px;
@@ -146,7 +144,6 @@
   }
 }
 
-/* Desktop styles */
 @media (min-width: 1024px) {
   .inscription-container {
     max-width: 600px;
