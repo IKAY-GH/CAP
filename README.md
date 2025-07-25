@@ -1,391 +1,274 @@
-# cap
+REPOSITORY CHECKPOINT 4 Wild Code School/Simplon
 
-Ce projet est un monorepo JS, suivant l'architecture React-Express-MySQL telle qu'enseignée à la Wild Code School (v7.2.4) :
+#Wireframe: "https://www.figma.com/design/gxQsrpfYrEFrIp4LnalwTI/CAP-?node-id=118-401&p=f&t=qmrpdwQfCzrPnyMn-0"
 
-```mermaid
-sequenceDiagram
-    box Web Client
-    participant React as React
-    participant Fetcher as Fetcher
-    end
-    box Web Server
-    participant Express as Express
-    participant Module as Module
-    end
-    box DB Server
-    participant DB as MySQL Server
-    end
+#DataBase: ![Database modeling](./client/src/assets/images/Modelisation_bdd_cap.png)
 
-    React-)Fetcher: event
-    activate Fetcher
-    Fetcher-)Express: requête (HTTP)
-    activate Express
-    Express-)Module: appel
-    activate Module
-    Module-)DB: requête SQL
-    activate DB
-    DB--)Module: données
-    deactivate DB
-    Module--)Express: json
-    deactivate Module
-    Express--)Fetcher: réponse HTTP
-    deactivate Express
-    Fetcher--)React: render
-    deactivate Fetcher
+#Backlog:ORY CHECKPOINT 4 Wild Code School/Simplon
+
+#Wireframe: "https://www.figma.com/design/gxQsrpfYrEFrIp4LnalwTI/CAP-?node-id=118-401&p=f&t=qmrpdwQfCzrPnyMn-0"
+
+#DataBase: ![Database modeling](./client/src/assets/images/Modelisation_bdd_cap.png)
+
+#Backlog: 
+
+US1/home-page
+As a user, I want to be able to access a home page where I can search for an activity in order to quickly respond to my professional needs.
+
+US2/search
+As a user, I want to be able to access a results page for my search so that I can quickly target and find an activity.
+
+As a user, I want to be able to download an activity sheet so that I can have it physically available at my workplace.
+
+US3/toDoList
+As a user, I want to be able to create a to-do list linked to an activity in order to better organize myself at my workplace.
+
+As a user, I want to be able to download my to-do list and my activity so that I have all the documents necessary to create an activity at once.
+
+US4/auth
+As a user I want to be able to create an account so that I can save a history of my activities and todolist
+
+US5/advenced-research
+As a user, I want to be able to search more precisely for games to meet very specific needs in my workplace.
+
+# CAP! - Activities, Animations & Games Management Platform
+
+![CAP Logo](./client/src/assets/images/5a71058a-208f-4820-963a-69c5f7e0c922.png)
+
+## 🎯 Overview
+
+**CAP!** is a comprehensive web application designed to help educators, animators, and activity coordinators discover, organize, and manage games and activities for various age groups and contexts. The platform provides an intuitive search system, detailed activity descriptions, task management, and PDF generation capabilities.
+
+## ✨ Key Features
+
+### 🔍 Smart Activity Search
+- **Advanced Filtering**: Search activities by type, age group, duration, number of players, and material requirements
+- **Category-based Organization**: Activities organized by type (games, sports, creative, educational)
+- **Material Requirements**: Filter by material needs (no material, art supplies, sports equipment, other)
+
+### 📋 Activity Management
+- **Detailed Activity Profiles**: Complete information including objectives, rules, variants, and material requirements
+- **PDF Export**: Generate downloadable activity sheets with complete instructions
+- **Task Lists**: Create and manage preparation checklists for activities (before, during, after)
+
+### 🎨 User Experience
+- **Responsive Design**: Optimized for mobile, tablet, and desktop devices
+- **Modern UI**: Clean, intuitive interface with custom branding and animations
+- **Accessibility**: User-friendly navigation and clear visual hierarchy
+
+### 👥 User Management
+- **User Registration/Login**: Account creation and authentication system
+- **Activity History**: Track consulted activities and created task lists
+- **Personal Dashboard**: Manage personal activity preferences and history
+
+## 🛠️ Technical Stack
+
+### Frontend
+- **React 19.1.0** with TypeScript
+- **Vite** for build tooling and development server
+- **React Router 7.4.1** for navigation
+- **React Hook Form 7.61.1** with Yup validation
+- **Custom CSS** with modern design patterns and animations
+
+### Backend
+- **Node.js** with Express.js
+- **TypeScript** for type safety
+- **MySQL** database with structured schema
+- **PDF Generation** for activity sheets
+- **RESTful API** architecture
+
+### Development Tools
+- **Biome** for linting and formatting
+- **Jest** for testing
+- **Docker** for containerization
+- **Git Hooks** for code quality enforcement
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (version 18+)
+- MySQL (version 8+)
+- Git
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/IKAY-GH/cap.git
+   cd cap
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up the database**
+   ```bash
+   # Run database migrations
+   npm run db:migrate
+   
+   # Seed the database with sample data
+   npm run db:seed
+   ```
+
+4. **Configure environment variables**
+   ```bash
+   # Copy environment template (create your own .env files)
+   # Configure database connection and other settings
+   ```
+
+5. **Start the development servers**
+   ```bash
+   # Start both client and server in development mode
+   npm run dev
+   ```
+
+The application will be available at:
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:3310
+
+## 📁 Project Structure
+
+```
+cap/
+├── client/                 # React frontend application
+│   ├── src/
+│   │   ├── components/     # Reusable UI components
+│   │   ├── pages/         # Application pages/routes
+│   │   ├── assets/        # Images, icons, fonts, styles
+│   │   └── types/         # TypeScript type definitions
+│   └── public/            # Static assets
+├── server/                # Express.js backend
+│   ├── src/
+│   │   ├── modules/       # Feature modules (games, tasks, users)
+│   │   └── app.ts         # Express application setup
+│   ├── database/          # Database schema and migrations
+│   └── tests/             # Backend tests
+├── bin/                   # Utility scripts
+└── docs/                  # Documentation
 ```
 
-Il est pré-configuré avec un ensemble d'outils pour aider les étudiants à produire du code de qualité industrielle, tout en restant un outil pédagogique :
+## 🎮 Main Features Breakdown
+
+### Activity Discovery
+- Browse through a curated collection of activities
+- Filter by multiple criteria simultaneously
+- View detailed activity information including objectives and materials needed
+
+### Activity Planning
+- Generate comprehensive activity sheets
+- Create customized task lists for activity preparation
+- Download materials in PDF format for offline use
+
+### Content Management
+- Rich activity database with detailed metadata
+- Support for multiple activity types and contexts
+- Extensible system for adding new activities
+
+### User Interface
+- **Home Page**: Main search interface with visual filters
+- **Results Page**: Grid layout showing filtered activities
+- **Activity Details**: Complete activity information with action buttons
+- **Task Management**: Interactive checklists for activity preparation
+- **User Authentication**: Secure login and registration system
+
+## 🎨 Design System
+
+### Color Palette
+- **Primary Yellow**: #FFB733 (Navigation/Footer)
+- **Primary Orange**: #F57336 (Buttons/Actions)
+- **Text Color**: #3B3B3B (Main content)
+- **Background**: Custom pirate-themed imagery with transparency
+
+### Typography
+- **Primary Font**: Helvetica for body text
+- **Display Font**: "Pieces of Eight" for titles and branding
+- **Responsive sizing** across all device breakpoints
+
+## 🔧 API Endpoints
+
+### Games/Activities
+- `GET /api/game` - Fetch all activities
+- `GET /api/game/:id` - Get specific activity details
+- `GET /api/game/search` - Search with filters
+- `POST /api/game` - Create new activity
+
+### Tasks
+- `GET /api/task/game/:gameId` - Get tasks for specific activity
+- `POST /api/task` - Create new task
+- `PUT /api/task/:id` - Update task
+- `DELETE /api/task/:id` - Delete task
+
+### PDF Generation
+- `GET /api/pdf/game-sheet/:gameId` - Download activity sheet
+- `POST /api/pdf/todolist` - Generate task list PDF
+
+### User Management
+- `POST /api/users/inscription` - User registration
+- `GET /api/user/:id` - Get user profile
+- `POST /api/user-history/consultation` - Track activity views
+
+## 🧪 Testing
 
-- **Concurrently** : Permet d'exécuter plusieurs commandes simultanément dans le même terminal.
-- **Vite** : Alternative à _Create-React-App_, offrant une expérience plus fluide avec moins d'outils.
-- **Biome** : Alternative à _ESlint_ et _Prettier_, assurant la qualité du code selon des règles choisies.
-- **Supertest** : Bibliothèque pour tester les serveurs HTTP en node.js.
-
-## Table des Matières
-
-- [cap](#name)
-  - [Table des Matières](#table-des-matières)
-  - [Installation \& Utilisation](#installation--utilisation)
-  - [Les choses à retenir](#les-choses-à-retenir)
-    - [Commandes de Base](#commandes-de-base)
-    - [Structure des Dossiers](#structure-des-dossiers)
-    - [Mettre en place la base de données](#mettre-en-place-la-base-de-données)
-    - [Développer la partie back-end](#développer-la-partie-back-end)
-    - [REST](#rest)
-    - [Autres Bonnes Pratiques](#autres-bonnes-pratiques)
-  - [FAQ](#faq)
-    - [Installation avec Docker](#installation-avec-docker)
-      - [Mode développement](#mode-développement)
-      - [Installation de nouvelles dépendances](#installation-de-nouvelles-dépendances)
-      - [Accéder à la base de données](#accéder-à-la-base-de-données)
-    - [Déploiement avec Traefik](#déploiement-avec-traefik)
-    - [Variables d'environnement spécifiques](#variables-denvironnement-spécifiques)
-    - [Logs](#logs)
-    - [Contribution](#contribution)
-
-## Installation & Utilisation
-
-1. Installez le plugin **Biome** dans VSCode et configurez-le.
-2. Clonez ce dépôt, puis accédez au répertoire cloné.
-3. Exécutez la commande `npm install`.
-4. Créez des fichiers d'environnement (`.env`) dans les répertoires `server` et `client` : vous pouvez copier les fichiers `.env.sample` comme modèles (**ne les supprimez pas**).
-
-## Les choses à retenir
-
-### Commandes de Base
-
-| Commande               | Description                                                                 |
-|------------------------|-----------------------------------------------------------------------------|
-| `npm install`          | Installe les dépendances pour le client et le serveur                       |
-| `npm run db:migrate`   | Met à jour la base de données à partir d'un schéma défini                   |
-| `npm run dev`          | Démarre les deux serveurs (client et serveur) dans un seul terminal         |
-| `npm run check`        | Exécute les outils de validation (linting et formatage)                     |
-| `npm run test`         | Exécute les tests unitaires et d'intégration                                |
-
-### Structure des Dossiers
-
-```plaintext
-my-project/
-│
-├── server/
-│   ├── app/
-│   │   ├── modules/
-│   │   │   ├── item/
-│   │   │   │   ├── itemActions.ts
-│   │   │   │   └── itemRepository.ts
-│   │   │   └── ...
-│   │   ├── app.ts
-│   │   ├── main.ts
-│   │   └── router.ts
-│   ├── database/
-│   │   ├── client.ts
-│   │   └── schema.sql
-│   ├── tests/
-│   ├── .env
-│   └── .env.sample
-│
-└── client/
-    ├── src/
-    │   ├── components/
-    │   ├── pages/
-    │   └── App.tsx
-    ├── .env
-    └── .env.sample
-```
-
-### Mettre en place la base de données
-
-**Créer et remplir le fichier `.env`** dans le dossier `server` :
-
-```plaintext
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=not_root
-DB_PASSWORD=password
-DB_NAME=my_database
-```
-
-**Les variables sont utilisés** dans `server/database/client.ts` :
-
-```typescript
-const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
-
-import mysql from "mysql2/promise";
-
-const client = mysql.createPool({
-  host: DB_HOST,
-  port: DB_PORT as number | undefined,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_NAME,
-});
-
-export default client;
-```
-
-**Créer une table** dans `server/database/schema.sql` :
-
-```sql
-CREATE TABLE item (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  user_id INT NOT NULL,
-  FOREIGN KEY(user_id) REFERENCES user(id)
-);
-```
-
-**Insérer des données** dans `server/database/schema.sql` :
-
-```sql
-INSERT INTO item (title, user_id) VALUES
-  ('Sample Item 1', 1),
-  ('Sample Item 2', 2);
-```
-
-**Synchroniser la BDD avec le schema** :
-
-```sh
-npm run db:migrate
-```
-
-### Développer la partie back-end
-
-**Créer une route** dans `server/app/router.ts` :
-
-```typescript
-// ...
-
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
-
-// Define item-related routes
-import itemActions from "./modules/item/itemActions";
-
-router.get("/api/items", itemActions.browse);
-
-/* ************************************************************************* */
-
-// ...
-```
-
-**Définir une action** dans `server/app/modules/item/itemActions.ts` :
-
-```typescript
-import type { RequestHandler } from "express";
-
-import itemRepository from "./itemRepository";
-
-const browse: RequestHandler = async (req, res, next) => {
-  try {
-    const items = await itemRepository.readAll();
-
-    res.json(items);
-  } catch (err) {
-    next(err);
-  }
-};
-
-export default { browse };
-```
-
-**Accéder aux données** dans `server/app/modules/item/itemRepository.ts` :
-
-```typescript
-import databaseClient from "../../../database/client";
-
-import type { Result, Rows } from "../../../database/client";
-
-interface Item {
-  id: number;
-  title: string;
-  user_id: number;
-}
-
-class ItemRepository {
-  async readAll() {
-    const [rows] = await databaseClient.query<Rows>("select * from item");
-
-    return rows as Item[];
-  }
-}
-
-export default new ItemRepository();
-```
-
-**Ajouter un middleware** 
-
-```typescript
-// ...
-
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
-
-// Define item-related routes
-import itemActions from "./modules/item/itemActions";
-
-const foo: RequestHandler = (req, res, next) => {
-  req.message = "hello middleware";
-
-  next();
-}
-
-router.get("/api/items", foo, itemActions.browse);
-
-/* ************************************************************************* */
-
-// ...
-```
-
-`req.message` sera disponible dans `itemActions.browse`.
-
-⚠️ La propriété `message` doit être ajoutée dans `src/types/express/index.d.ts` :
-
-```diff
-// to make the file a module and avoid the TypeScript error
-export type {};
-
-declare global {
-  namespace Express {
-    export interface Request {
-      /* ************************************************************************* */
-      // Add your custom properties here, for example:
-      //
-      // user?: { ... };
-      /* ************************************************************************* */
-+      message: string;
-    }
-  }
-}
-```
-
-### REST
-
-| Opération | Méthode | Chemin d'URL | Corps de la requête | SQL    | Réponse (Succès)               | Réponse (Erreur)                                                       |
-|-----------|---------|--------------|---------------------|--------|--------------------------------|------------------------------------------------------------------------|
-| Browse    | GET     | /items       |                     | SELECT | 200 (OK), liste des items.     |                                                                        |
-| Read      | GET     | /items/:id   |                     | SELECT | 200 (OK), un item.             | 404 (Not Found), si id invalide.                                       |
-| Add       | POST    | /items       | Données de l'item   | INSERT | 201 (Created), id d'insertion. | 400 (Bad Request), si corps invalide.                                  |
-| Edit      | PUT     | /items/:id   | Données de l'item   | UPDATE | 204 (No Content).              | 400 (Bad Request), si corps invalide. 404 (Not Found), si id invalide. |
-| Destroy   | DELETE  | /items/:id   |                     | DELETE | 204 (No Content).              | 404 (Not Found), si id invalide.                                       |
-
-### Autres Bonnes Pratiques
-
-- **Sécurité** :
-  - Validez et échappez toujours les entrées des utilisateurs.
-  - Utilisez HTTPS pour toutes les communications réseau.
-  - Stockez les mots de passe de manière sécurisée en utilisant des hash forts (ex : argon2).
-  - Revoyez et mettez à jour régulièrement les dépendances.
-
-- **Code** :
-  - Suivez les principes SOLID pour une architecture de code propre et maintenable.
-  - Utilisez TypeScript pour bénéficier de la vérification statique des types.
-  - Adoptez un style de codage cohérent avec Biome.
-  - Écrivez des tests pour toutes les fonctionnalités critiques.
-
-## FAQ
-
-### Installation avec Docker
-> ⚠️ Prérequis : Vous devez avoir installé Docker et Docker Compose sur votre machine.  
-> Suivez les instructions ici : [Docker Installation](https://docs.docker.com/get-docker/).
-
-Lorsque Docker est installé et démarré, exécutez la commande suivante pour construire l'image Docker et démarrer les conteneurs :
 ```bash
-docker compose up -d --build
+# Run all tests
+npm run test
+
+# Run backend tests only
+npm run test --workspace=server
+
+# Run frontend tests only  
+npm run test --workspace=client
 ```
-La partie _client_ de l'application sera accessible à l'adresse http://localhost:3000 et la partie _serveur_ à l'adresse http://localhost:3310.  
-Pour arrêter et supprimer les conteneurs, exécutez :
+
+## 🚀 Deployment
+
+### Production Build
 ```bash
-docker compose down
+# Build both client and server
+npm run build
+
+# Start production server
+npm run start
 ```
 
-#### Mode développement
-Les dépendances (du dossier `node_modules`) sont installées dans le conteneur Docker et ne seront pas visibles directement. Si vous utilisez un IDE comme VSCode et que vous souhaitez modifier des fichiers de votre application, vous devez installer les dépendances localement pour prévenir toute erreur de fichiers manquants.  
+### Docker Deployment
 ```bash
-npm install
+# Build and run with Docker Compose
+docker-compose up -d
+
+# For production environment
+docker-compose -f docker-compose.prod.yml up -d
 ```
 
-#### Installation de nouvelles dépendances
-Pour installer de nouvelles dépendances, procédez en local comme d'habitude avec `npm install <package-name>`, puis, synchronisez les dépendances dans le conteneur Docker avec la commande suivante :
-```bash
-docker compose exec web sh -c "npm install"
-```
+## 📝 Contributing
 
-#### Accéder à la base de données
-Pour vous connecter à la base de données avec votre terminal, exécutez la commande suivante :
-```bash
-docker compose exec database sh -c "mysql -uuser -ppassword js_template_fullstack"
-```
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-### Déploiement avec Traefik
+### Code Quality
+- Follow TypeScript best practices
+- Use Biome for linting and formatting
+- Write tests for new features
+- Maintain responsive design principles
 
-> ⚠️ Prérequis : Vous devez avoir installé et configuré Traefik sur votre VPS au préalable. Suivez les instructions ici : [VPS Traefik Starter Kit](https://github.com/WildCodeSchool/vps-traefik-starter-kit/).
+## 📄 License
 
-Pour le déploiement, ajoutez les secrets suivants dans la section `secrets` → `actions` du dépôt GitHub :
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-- `SSH_HOST` : Adresse IP de votre VPS
-- `SSH_USER` : Identifiant SSH pour votre VPS
-- `SSH_PASSWORD` : Mot de passe de connexion SSH pour votre VPS
+## 👤 Author
 
-Et une variable publique dans `/settings/variables/actions` :
+**IKAY-Projects**
+- GitHub: [@IKAY-GH](https://github.com/IKAY-GH)
+- Project Link: [https://github.com/IKAY-GH/cap](https://github.com/IKAY-GH/cap)
 
-- `PROJECT_NAME` : Le nom du projet utilisé pour créer le sous-domaine.
+## 🙏 Acknowledgments
 
-> ⚠️ Avertissement : Les underscores ne sont pas autorisés car ils peuvent causer des problèmes avec le certificat Let's Encrypt.
-
-L'URL de votre projet sera `https://${PROJECT-NAME}.${subdomain}.wilders.dev/`.
-
-### Variables d'environnement spécifiques
-
-Les étudiants doivent utiliser le modèle fourni dans le fichier `*.env.sample*` en suivant la convention `<PROJECT_NAME><SPECIFIC_NAME>=<THE_VARIABLE>`.
-
-> ⚠️ **Avertissement:** Le `PROJECT_NAME` doit correspondre à celui utilisé dans la variable publique Git.
-
-Pour l'ajouter lors du déploiement, suivez ces deux étapes :
-
-1. Ajoutez la variable correspondante dans le fichier `docker-compose.prod.yml` (comme montré dans l'exemple : `PROJECT_NAME_SPECIFIC_NAME: ${PROJECT_NAME_SPECIFIC_NAME}`).
-2. Connectez-vous à votre serveur via SSH. Ouvrez le fichier `.env` global dans Traefik (`nano ./traefik/data/.env`). Ajoutez la variable avec la valeur correcte et sauvegardez le fichier.
-
-Après cela, vous pouvez lancer le déploiement automatique. Docker ne sera pas rafraîchi pendant ce processus.
-
-### Logs
-
-Pour accéder aux logs de votre projet en ligne (pour suivre le déploiement ou surveiller les erreurs), connectez-vous à votre VPS (`ssh user@host`). Ensuite, allez dans votre projet spécifique et exécutez `docker compose logs -t -f`.
-
-### Contribution
-
-Nous accueillons avec plaisir les contributions ! Veuillez suivre ces étapes pour contribuer :
-
-1. **Fork** le dépôt.
-2. **Clone** votre fork sur votre machine locale.
-3. Créez une nouvelle branche pour votre fonctionnalité ou bug fix (`git switch -c feature/your-feature-name`).
-4. **Commit** vos modifications (`git commit -m 'Add some feature'`).
-5. **Push** vers votre branche (`git push origin feature/your-feature-name`).
-6. Créez une **Pull Request** sur le dépôt principal.
-
-**Guide de Contribution** :
-
-- Assurez-vous que votre code respecte les standards de codage en exécutant `npm run check` avant de pousser vos modifications.
-- Ajoutez des tests pour toute nouvelle fonctionnalité ou correction de bug.
-- Documentez clairement vos modifications dans la description de la pull request.
+- Designed for educators and activity coordinators
+- Built with modern web technologies
+- Focused on user experience and accessibility
+- Community-driven activity database
