@@ -4,7 +4,7 @@ import "./home.css";
 
 import materialIcon from "../../assets/icons/contour-de-cube-de-des.png";
 import playersIcon from "../../assets/icons/gens.png";
-// Import des icônes
+
 import typeIcon from "../../assets/icons/impression-3d.png";
 import durationIcon from "../../assets/icons/time-and-date.png";
 import ageIcon from "../../assets/icons/tranche-dage (1).png";
@@ -35,7 +35,6 @@ function Home() {
   };
 
   const handleSearch = () => {
-    // Créer les paramètres d'URL pour les filtres non vides
     const searchParams = new URLSearchParams();
 
     for (const [key, value] of Object.entries(filters)) {
@@ -44,7 +43,6 @@ function Home() {
       }
     }
 
-    // Rediriger vers la page de résultats avec les paramètres
     navigate(`/results?${searchParams.toString()}`);
   };
 

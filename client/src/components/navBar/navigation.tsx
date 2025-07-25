@@ -9,7 +9,6 @@ function Navigation() {
   const menuRef = useRef<HTMLElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
 
-  // Fonction pour fermer le menu avec useCallback pour éviter les re-rendus
   const handleCloseMenu = useCallback(() => {
     setCloseMenu(true);
     setOpenMenu(false);
