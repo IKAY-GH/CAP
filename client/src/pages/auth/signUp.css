@@ -1,82 +1,167 @@
-/* Mobile-first sign up */
+/* Mobile-first approach for SignUp page */
 .inscription-container {
-  width: 90%;
-  max-width: 400px;
-  margin: 10% auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  color: white;
 }
 
-form {
+.inscription-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.inscription-container form {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
-label {
-  margin-top: 15px;
-  font-weight: bold;
-  font-size: 0.9rem;
+.inscription-container label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-input {
-  margin-top: 5px;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
+.inscription-container input {
+  padding: 0.8rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.inscription-container input:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.inscription-container input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .form-error {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
+  color: #ff6b6b !important;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.error-message {
+  background: rgba(255, 107, 107, 0.2);
+  border: 1px solid #ff6b6b;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+#pseudo_help {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.3rem;
+  font-style: italic;
 }
 
 #btn-valide {
-  margin-top: 20px;
-  padding: 14px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  color: #333;
   border: none;
-  border-radius: 6px;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
-#btn-valide:hover {
-  background-color: #0056b3;
+#btn-valide:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+  background: linear-gradient(45deg, #ffed4e, #ffd700);
+}
+
+#btn-valide:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+#btn-valide:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* Tablet styles */
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   .inscription-container {
     max-width: 500px;
-    padding: 30px;
+    padding: 2rem;
   }
 
-  label {
-    font-size: 1rem;
+  .inscription-container h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
   }
 
-  input {
-    padding: 10px;
+  .inscription-container form {
+    gap: 1.5rem;
   }
 
-  .form-error {
-    font-size: 14px;
+  .inscription-container label {
+    font-size: 1.1rem;
+  }
+
+  .inscription-container input {
+    padding: 1rem;
+    font-size: 1.1rem;
   }
 
   #btn-valide {
-    padding: 12px;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.2rem;
   }
 }
 
 /* Desktop styles */
-@media screen and (min-width: 1024px) {
+@media (min-width: 1024px) {
   .inscription-container {
-    margin: 5% auto;
+    max-width: 600px;
+    padding: 3rem;
+  }
+
+  .inscription-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .inscription-container form {
+    gap: 2rem;
+  }
+
+  .inscription-container input {
+    padding: 1.2rem;
+    font-size: 1.2rem;
+  }
+
+  #btn-valide {
+    padding: 1.5rem 3rem;
+    font-size: 1.3rem;
   }
 }

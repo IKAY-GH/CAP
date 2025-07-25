@@ -4,12 +4,15 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 import "./assets/styles/global.css";
 import App from "./App";
 import Search from "./components/search/search.tsx";
+import { SignUp } from "./pages/auth/index.ts";
 import SignIn from "./pages/auth/signIn.tsx";
 import Creator from "./pages/creator/creator";
 import Error404 from "./pages/error/error404.tsx";
 import GCU from "./pages/gcu/gcu.tsx";
 import Home from "./pages/home/home";
 import LegalNotices from "./pages/legalNotices/legalNotices";
+import Results from "./pages/results/results";
+import ToDoList from "./pages/todolist/todolist";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -36,8 +39,23 @@ const router = createBrowserRouter([
       },
 
       {
+        path: "/results",
+        element: <Results />,
+      },
+
+      {
+        path: "/todolist/:gameId",
+        element: <ToDoList />,
+      },
+
+      {
         path: "/Connexion",
         element: <SignIn />,
+      },
+
+      {
+        path: "/Inscription",
+        element: <SignUp />,
       },
 
       {

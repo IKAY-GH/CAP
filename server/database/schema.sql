@@ -31,7 +31,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
-
+-- comment
 -- -----------------------------------------------------
 -- Table `franck`.`game`
 -- -----------------------------------------------------
@@ -70,10 +70,15 @@ DROP TABLE IF EXISTS `franck`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `franck`.`user` (
   `iduser` INT NOT NULL AUTO_INCREMENT,
-  `firstname` VARCHAR(45) NOT NULL,
-  `lastname` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `pseudo` VARCHAR(45) NOT NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(100) NOT NULL UNIQUE,
+  `password_hash` VARCHAR(255) NOT NULL,
+  `avatar_url` VARCHAR(255) NULL,
+  `zip_code` VARCHAR(10) NULL,
+  `is_admin` TINYINT NOT NULL DEFAULT 0,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`iduser`))
 ENGINE = InnoDB;
 

@@ -44,8 +44,8 @@ function Home() {
       }
     }
 
-    // Rediriger vers la page de recherche avec les paramètres
-    navigate(`/search?${searchParams.toString()}`);
+    // Rediriger vers la page de résultats avec les paramètres
+    navigate(`/results?${searchParams.toString()}`);
   };
 
   return (

@@ -15,6 +15,11 @@ const router = express.Router();
 router.get("/api/user", usersActions.browse);
 router.get("/api/user/:id", usersActions.read);
 router.post("/api/user", usersActions.hashPassword, usersActions.add);
+router.post(
+  "/api/users/inscription",
+  usersActions.hashPassword,
+  usersActions.add,
+);
 
 // Routes tâches
 router.get("/api/task", tasksActions.browse);
