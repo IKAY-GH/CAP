@@ -1,3 +1,4 @@
+import argon2 from "argon2";
 import AbstractSeeder from "./AbstractSeeder";
 
 class UserSeeder extends AbstractSeeder {
@@ -7,41 +8,58 @@ class UserSeeder extends AbstractSeeder {
   }
 
   // The run method - Populate the 'user' table with fake data
-  run() {
+  async run() {
+    const hashingOptions = {
+      type: argon2.argon2id,
+      memoryCost: 19 * 2 ** 10,
+      timeCost: 2,
+      parallelism: 1,
+    };
+
     const users = [
       {
-        firstname: "Alice",
-        lastname: "Martin",
+        pseudo: "alice_martin",
+        first_name: "Alice",
+        last_name: "Martin",
         email: "alice.martin@exemple.com",
-        password: "alice123",
+        password_hash: await argon2.hash("alice123", hashingOptions),
+        is_admin: false,
         refName: "user_1",
       },
       {
-        firstname: "Bob",
-        lastname: "Dupont",
+        pseudo: "bob_dupont",
+        first_name: "Bob",
+        last_name: "Dupont",
         email: "bob.dupont@exemple.com",
-        password: "bob456",
+        password_hash: await argon2.hash("bob456", hashingOptions),
+        is_admin: false,
         refName: "user_2",
       },
       {
-        firstname: "Claire",
-        lastname: "Bernard",
+        pseudo: "claire_bernard",
+        first_name: "Claire",
+        last_name: "Bernard",
         email: "claire.bernard@exemple.com",
-        password: "claire789",
+        password_hash: await argon2.hash("claire789", hashingOptions),
+        is_admin: true,
         refName: "user_3",
       },
       {
-        firstname: "David",
-        lastname: "Moreau",
+        pseudo: "david_moreau",
+        first_name: "David",
+        last_name: "Moreau",
         email: "david.moreau@exemple.com",
-        password: "david321",
+        password_hash: await argon2.hash("david321", hashingOptions),
+        is_admin: false,
         refName: "user_4",
       },
       {
-        firstname: "Emma",
-        lastname: "Leroy",
+        pseudo: "emma_leroy",
+        first_name: "Emma",
+        last_name: "Leroy",
         email: "emma.leroy@exemple.com",
-        password: "emma654",
+        password_hash: await argon2.hash("emma654", hashingOptions),
+        is_admin: false,
         refName: "user_5",
       },
     ];

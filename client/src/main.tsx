@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 import "./assets/styles/global.css";
 import App from "./App";
 import Search from "./components/search/search.tsx";
+import { SignUp } from "./pages/auth/index.ts";
 import SignIn from "./pages/auth/signIn.tsx";
 import Creator from "./pages/creator/creator";
 import Error404 from "./pages/error/error404.tsx";
@@ -50,6 +51,11 @@ const router = createBrowserRouter([
       {
         path: "/Connexion",
         element: <SignIn />,
+      },
+
+      {
+        path: "/Inscription",
+        element: <SignUp />,
       },
 
       {

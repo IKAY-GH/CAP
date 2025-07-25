@@ -65,10 +65,10 @@ function Navigation() {
         {openMenu && (
           <ul className="links">
             <li>
-              <Link to={"/log_in"}>Connexion</Link>
+              <Link to={"/Connexion"}>Connexion</Link>
             </li>
             <li>
-              <Link to={"/sign_up"}>Inscription</Link>
+              <Link to={"/Inscription"}>Inscription</Link>
             </li>
             <li>
               <Link

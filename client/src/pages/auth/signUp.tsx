@@ -1,8 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import * as yup from "yup";
 
-import "./inscription.css";
+import "./signUp.css";
 
 const validationSchema = yup.object({
   pseudo: yup
@@ -12,11 +14,11 @@ const validationSchema = yup.object({
   first_name: yup
     .string()
     .required("Il faut préciser votre nom")
-    .min(4, "Un minimum de 4 caractères est demandé"),
+    .min(2, "Un minimum de 2 caractères est demandé"),
   last_name: yup
     .string()
     .required("Il faut préciser votre prénom")
-    .min(4, "Un minimum de 4 caractères est demandé !"),
+    .min(2, "Un minimum de 2 caractères est demandé !"),
   email: yup
     .string()
     .required("Il faut préciser votre email")
@@ -36,7 +38,11 @@ const validationSchema = yup.object({
 
 type FormData = yup.InferType<typeof validationSchema>;
 
-function inscription() {
+function SignUp() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -45,8 +51,10 @@ function inscription() {
   } = useForm<FormData>({
     resolver: yupResolver(validationSchema),
   });
+
   const onSubmit = async (data: FormData) => {
-    /*alert(`Bienvenue ${data.pseudo} ! votre email : ${data.email}`);*/
+    setIsLoading(true);
+    setError(null);
 
     try {
       const response = await fetch(
@@ -56,7 +64,6 @@ function inscription() {
           headers: {
             "Content-Type": "application/json",
           },
-
           body: JSON.stringify({
             pseudo: data.pseudo,
             first_name: data.first_name,
@@ -70,21 +77,31 @@ function inscription() {
       const result = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("token", result.token);
+        reset();
         alert(`Bienvenu ${data.pseudo} !`);
-        window.location.href = "/dashboard";
+        navigate("/");
       } else {
-        alert(result.message || "Erreur lors de l'inscription");
+        setError(result.message || "Erreur lors de l'inscription");
       }
     } catch (error) {
       console.error("Erreur réseau", error);
+      setError("Erreur de connexion. Veuillez réessayer.");
+    } finally {
+      setIsLoading(false);
     }
-
-    reset();
   };
   return (
     <main className="inscription-container">
       <h2>Inscription</h2>
+
+      {error && (
+        <div
+          className="error-message"
+          style={{ color: "red", marginBottom: "1rem" }}
+        >
+          {error}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="pseudo">Pseudo</label>
@@ -95,9 +112,10 @@ function inscription() {
           autoComplete="userName"
           required
           aria-describedby="pseudo_help"
+          disabled={isLoading}
         />
         {errors.pseudo && <p className="form-error">{errors.pseudo.message}</p>}
-        <p id="pseudo_help">Votre pseudo doit faire 4 caractères min.</p>
+        <p id="pseudo_help">Votre pseudo doit faire 2 caractères min.</p>
 
         <label htmlFor="nom">Nom</label>
         <input
@@ -106,6 +124,7 @@ function inscription() {
           id="nom"
           autoComplete="family-name"
           required
+          disabled={isLoading}
         />
         {errors.first_name && (
           <p className="form-error">{errors.first_name.message}</p>
@@ -118,6 +137,7 @@ function inscription() {
           id="prenom"
           autoComplete="given-name"
           required
+          disabled={isLoading}
         />
         {errors.last_name && (
           <p className="form-error">{errors.last_name.message}</p>
@@ -130,6 +150,7 @@ function inscription() {
           id="email"
           autoComplete="email"
           required
+          disabled={isLoading}
         />
         {errors.email && <p className="form-error">{errors.email.message}</p>}
 
@@ -140,6 +161,7 @@ function inscription() {
           id="password"
           autoComplete="new-password"
           required
+          disabled={isLoading}
         />
         {errors.password && (
           <p className="form-error">{errors.password.message}</p>
@@ -152,14 +174,15 @@ function inscription() {
           id="confirm_password"
           autoComplete="new-password"
           required
+          disabled={isLoading}
         />
         {errors.confirm_password && (
           <p className="form-error">{errors.confirm_password.message}</p>
         )}
 
         <div>
-          <button id="btn-valide" type="submit">
-            Inscription
+          <button id="btn-valide" type="submit" disabled={isLoading}>
+            {isLoading ? "Inscription en cours..." : "Inscription"}
           </button>
         </div>
       </form>
@@ -167,4 +190,4 @@ function inscription() {
   );
 }
 
-export default inscription;
+export default SignUp;
