@@ -129,6 +129,45 @@ function Results() {
     navigate("/");
   };
 
+  const downloadGameSheet = async (gameId: number) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3310/api/pdf/game-sheet/${gameId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Erreur lors du téléchargement");
+      }
+
+      // Récupérer le contenu HTML
+      const htmlContent = await response.text();
+
+      // Créer un blob avec le contenu HTML
+      const blob = new Blob([htmlContent], { type: "text/html" });
+      const url = window.URL.createObjectURL(blob);
+
+      // Créer un lien de téléchargement
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `fiche-activite-${gameId}.html`;
+      document.body.appendChild(link);
+      link.click();
+
+      // Nettoyer
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Erreur lors du téléchargement:", error);
+      alert("Erreur lors du téléchargement de la fiche d'activité");
+    }
+  };
+
   if (loading) {
     return (
       <div className="results-container">
@@ -206,8 +245,12 @@ function Results() {
               )}
 
               <div className="activity-actions">
-                <button className="btn-details" type="button">
-                  Voir plus de détails
+                <button
+                  className="btn-download"
+                  onClick={() => downloadGameSheet(game.id)}
+                  type="button"
+                >
+                  📥 Télécharger cette activité
                 </button>
               </div>
             </div>
