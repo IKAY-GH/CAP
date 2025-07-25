@@ -1,7 +1,6 @@
 import type { RequestHandler } from "express";
 import taskRepository from "./taskRepository";
 
-// Action pour récupérer toutes les tâches d'un jeu
 const readByGame: RequestHandler = async (req, res) => {
   try {
     const gameId = Number(req.params.gameId);
@@ -19,7 +18,6 @@ const readByGame: RequestHandler = async (req, res) => {
   }
 };
 
-// Action pour créer une nouvelle tâche
 const create: RequestHandler = async (req, res) => {
   try {
     const { title, description, moment, game_id } = req.body;
@@ -47,7 +45,6 @@ const create: RequestHandler = async (req, res) => {
   }
 };
 
-// Action pour mettre à jour une tâche
 const update: RequestHandler = async (req, res) => {
   try {
     const taskId = Number(req.params.id);
@@ -77,7 +74,6 @@ const update: RequestHandler = async (req, res) => {
   }
 };
 
-// Action pour supprimer une tâche
 const destroy: RequestHandler = async (req, res) => {
   try {
     const taskId = Number(req.params.id);

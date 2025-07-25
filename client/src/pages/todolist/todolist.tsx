@@ -47,7 +47,6 @@ function ToDoList() {
     try {
       setLoading(true);
 
-      // Récupérer les informations du jeu
       const gameResponse = await fetch(
         `http://localhost:3310/api/game/${gameId}`,
       );
@@ -56,7 +55,6 @@ function ToDoList() {
         setGame(gameData);
       }
 
-      // Récupérer les tâches associées au jeu
       const tasksResponse = await fetch(
         `http://localhost:3310/api/task/game/${gameId}`,
       );
@@ -64,7 +62,6 @@ function ToDoList() {
         const tasksData = await tasksResponse.json();
         setTasks(tasksData);
       } else {
-        // Si pas de tâches, créer des tâches par défaut
         setTasks([
           {
             id: 1,
@@ -175,7 +172,6 @@ function ToDoList() {
     if (!game) return;
 
     try {
-      // Télécharger la to-do list
       const todoResponse = await fetch(
         "http://localhost:3310/api/pdf/todolist",
         {
@@ -194,7 +190,6 @@ function ToDoList() {
         throw new Error("Erreur lors du téléchargement de la to-do list");
       }
 
-      // Télécharger la fiche de jeu
       const gameSheetResponse = await fetch(
         `http://localhost:3310/api/pdf/game-sheet/${game.id}`,
         {
@@ -206,20 +201,16 @@ function ToDoList() {
         throw new Error("Erreur lors du téléchargement de la fiche de jeu");
       }
 
-      // Récupérer le contenu des deux fichiers
       const todoHtmlContent = await todoResponse.text();
       const gameSheetHtmlContent = await gameSheetResponse.text();
 
-      // Créer les blobs pour les deux fichiers
       const todoBlob = new Blob([todoHtmlContent], { type: "text/html" });
       const gameSheetBlob = new Blob([gameSheetHtmlContent], {
         type: "text/html",
       });
 
-      // Créer les liens de téléchargement
       const gameTitle = game.title.replace(/[^a-zA-Z0-9]/g, "-");
 
-      // Télécharger la fiche de jeu
       const gameSheetUrl = window.URL.createObjectURL(gameSheetBlob);
       const gameSheetLink = document.createElement("a");
       gameSheetLink.href = gameSheetUrl;
@@ -229,9 +220,7 @@ function ToDoList() {
       document.body.removeChild(gameSheetLink);
       window.URL.revokeObjectURL(gameSheetUrl);
 
-      // Petit délai pour éviter les conflits de téléchargement
       setTimeout(() => {
-        // Télécharger la to-do list
         const todoUrl = window.URL.createObjectURL(todoBlob);
         const todoLink = document.createElement("a");
         todoLink.href = todoUrl;
@@ -242,7 +231,6 @@ function ToDoList() {
         window.URL.revokeObjectURL(todoUrl);
       }, 500);
 
-      // Afficher un message de confirmation
       alert(
         "Téléchargement terminé ! Vous devriez avoir reçu 2 fichiers :\n- La fiche de jeu\n- Votre to-do list personnalisée",
       );

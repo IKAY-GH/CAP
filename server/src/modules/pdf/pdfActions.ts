@@ -1,7 +1,6 @@
 import type { RequestHandler } from "express";
 import gamesRepository from "../game/gamesRepository";
 
-// Import du type Task
 type Task = {
   idtask: number;
   title: string;
@@ -11,7 +10,6 @@ type Task = {
   game_id?: number;
 };
 
-// Générer et télécharger la fiche d'un jeu en PDF
 const downloadGameSheet: RequestHandler = async (
   req,
   res,
@@ -26,7 +24,6 @@ const downloadGameSheet: RequestHandler = async (
       return;
     }
 
-    // En attendant une vraie lib PDF, on génère du HTML simple
     const htmlContent = `
       <!DOCTYPE html>
       <html>
@@ -99,7 +96,6 @@ const downloadGameSheet: RequestHandler = async (
       </html>
     `;
 
-    // Définir les headers pour le téléchargement
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.setHeader(
       "Content-Disposition",
@@ -112,7 +108,6 @@ const downloadGameSheet: RequestHandler = async (
   }
 };
 
-// Générer et télécharger une ToDoList en HTML
 const downloadToDoList: RequestHandler = async (
   req,
   res,
@@ -127,7 +122,6 @@ const downloadToDoList: RequestHandler = async (
       return;
     }
 
-    // Organiser les tâches par moment
     const tasksByMoment = {
       avant: tasks.filter((task: Task) => task.moment === "avant"),
       pendant: tasks.filter((task: Task) => task.moment === "pendant"),

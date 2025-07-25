@@ -29,17 +29,15 @@ function Search() {
   const [filteredGames, setFilteredGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // Charger tous les jeux au démarrage
   useEffect(() => {
     fetchGames();
   }, []);
 
-  // Appliquer les filtres quand les jeux sont chargés ou que les paramètres changent
   useEffect(() => {
     if (games.length > 0) {
       applyFilters();
     }
-  }, [games]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [games]);
 
   const fetchGames = async () => {
     setLoading(true);
@@ -63,14 +61,12 @@ function Search() {
 
     let filtered = [...games];
 
-    // Filtre par type
     if (type_of) {
       filtered = filtered.filter((game) =>
         game.type_of.toLowerCase().includes(type_of.toLowerCase()),
       );
     }
 
-    // Filtre par matériel
     if (no_material) {
       if (no_material === "aucun") {
         filtered = filtered.filter(
@@ -81,7 +77,6 @@ function Search() {
       }
     }
 
-    // Filtre par âge
     if (age_of_audience) {
       const [minAge, maxAge] = age_of_audience.split("-").map(Number);
       if (maxAge) {
@@ -94,7 +89,6 @@ function Search() {
       }
     }
 
-    // Filtre par nombre de joueurs
     if (number_of_players) {
       if (number_of_players === "1") {
         filtered = filtered.filter((game) => game.number_of_players >= 1);
@@ -109,7 +103,6 @@ function Search() {
       }
     }
 
-    // Filtre par durée
     if (duration) {
       if (duration.includes("-")) {
         const [min, max] = duration.split("-").map(Number);

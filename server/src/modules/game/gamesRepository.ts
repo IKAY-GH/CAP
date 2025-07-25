@@ -20,7 +20,6 @@ type Game = {
   other_material: string;
   rules: string | null;
   variant: string | null;
-  // Suppression de task_idtask - un jeu ne dépend pas d'une tâche
 };
 
 type GameFilters = {
@@ -32,7 +31,6 @@ type GameFilters = {
 };
 
 class GameRepository {
-  // The C of CRUD - Create operation
   async create(game: Omit<Game, "id">) {
     const [result] = await databaseClient.query<Result>(
       `insert into game (
@@ -64,7 +62,6 @@ class GameRepository {
     return result.insertId;
   }
 
-  // The Rs of CRUD - Read operations
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       "select * from game where id = ?",
@@ -79,7 +76,6 @@ class GameRepository {
     return rows as Game[];
   }
 
-  // Recherche avec filtres
   async searchWithFilters(filters: GameFilters) {
     let query = "select * from game where 1=1";
     const params: (number | string)[] = [];
@@ -112,20 +108,6 @@ class GameRepository {
     const [rows] = await databaseClient.query<Rows>(query, params);
     return rows as Game[];
   }
-
-  // The U of CRUD - Update operation
-  // TODO: Implement the update operation to modify an existing game
-
-  // async update(game: game) {
-  //   ...
-  // }
-
-  // The D of CRUD - Delete operation
-  // TODO: Implement the delete operation to remove an game by its ID
-
-  // async delete(id: number) {
-  //   ...
-  // }
 }
 
 export default new GameRepository();

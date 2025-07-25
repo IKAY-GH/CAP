@@ -1,7 +1,6 @@
 import type { RequestHandler } from "express";
 import userHistoryRepository from "./userHistoryRepository";
 
-// Ajouter une consultation de jeu à l'historique
 const addConsultation: RequestHandler = async (req, res, next) => {
   try {
     const { userId, gameId, taskId } = req.body;
@@ -20,7 +19,6 @@ const addConsultation: RequestHandler = async (req, res, next) => {
   }
 };
 
-// Marquer qu'une ToDoList a été créée
 const markTodoListCreated: RequestHandler = async (req, res, next) => {
   try {
     const { userId, gameId, taskId } = req.body;
@@ -37,7 +35,6 @@ const markTodoListCreated: RequestHandler = async (req, res, next) => {
   }
 };
 
-// Récupérer l'historique d'un utilisateur
 const getUserHistory: RequestHandler = async (req, res, next) => {
   try {
     const userId = Number(req.params.userId);

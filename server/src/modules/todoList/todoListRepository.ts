@@ -19,7 +19,6 @@ type TaskWithMoment = {
 };
 
 class ToDoListRepository {
-  // Créer une nouvelle ToDoList
   async create(todoList: Omit<ToDoList, "id" | "created_at">) {
     const [result] = await databaseClient.query<Result>(
       "insert into todolist (game_id, user_id, name, created_at) values (?, ?, ?, NOW())",
@@ -28,9 +27,7 @@ class ToDoListRepository {
     return result.insertId;
   }
 
-  // Récupérer une ToDoList avec ses tâches
   async getToDoListWithTasks(todoListId: number) {
-    // Récupérer les infos de la ToDoList
     const [todoListRows] = await databaseClient.query<Rows>(
       `select tl.*, g.title as game_title 
        from todolist tl 
@@ -41,7 +38,6 @@ class ToDoListRepository {
 
     if (todoListRows.length === 0) return null;
 
-    // Récupérer les tâches associées, groupées par moment
     const [taskRows] = await databaseClient.query<Rows>(
       `select * from task 
        where todolist_id = ? 
@@ -59,7 +55,6 @@ class ToDoListRepository {
     return { ...todoList, tasks };
   }
 
-  // Récupérer toutes les ToDoLists d'un utilisateur
   async getUserToDoLists(userId: number) {
     const [rows] = await databaseClient.query<Rows>(
       `select tl.*, g.title as game_title, g.type_of as game_type
@@ -72,7 +67,6 @@ class ToDoListRepository {
     return rows;
   }
 
-  // Ajouter une tâche à une ToDoList
   async addTaskToToDoList(task: Omit<TaskWithMoment, "idtask">) {
     const [result] = await databaseClient.query<Result>(
       "insert into task (title, description, is_done, moment, todolist_id) values (?, ?, ?, ?, ?)",
@@ -87,15 +81,12 @@ class ToDoListRepository {
     return result.insertId;
   }
 
-  // Supprimer une ToDoList et toutes ses tâches
   async delete(todoListId: number) {
-    // D'abord supprimer les tâches
     await databaseClient.query<Result>(
       "delete from task where todolist_id = ?",
       [todoListId],
     );
 
-    // Puis supprimer la ToDoList
     const [result] = await databaseClient.query<Result>(
       "delete from todolist where id = ?",
       [todoListId],

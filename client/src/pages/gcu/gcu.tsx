@@ -8,11 +8,10 @@ export default function GCU() {
       <section>
         <h2>1. Présentation de l'application</h2>
         <p>
-          L'application <strong>Jeux de Cartes</strong> a pour objectif de
-          proposer une collection de jeux de cartes traditionnels et modernes
-          dans un environnement numérique convivial. Elle permet aux
-          utilisateurs de jouer en solo ou entre amis, de gérer leurs parties et
-          de découvrir de nouveaux jeux de cartes.
+          L'application <strong>CAP</strong> a pour objectif de proposer une
+          collection de jeux , activités et animations pour les professionnel de
+          l'éducation qui souhaitent avoir un outil de recherche rapide et
+          efficace.
         </p>
       </section>
 
@@ -29,10 +28,10 @@ export default function GCU() {
       <section>
         <h2>3. Propriété intellectuelle</h2>
         <p>
-          Tous les contenus présents dans l'application Jeux de Cartes
-          (interfaces, règles de jeux, illustrations, logos, etc.) sont protégés
-          par les lois en vigueur sur la propriété intellectuelle. Toute
-          reproduction ou représentation sans autorisation écrite est interdite.
+          Tous les contenus présents dans l'application CAP (interfaces, règles
+          de jeux, illustrations, logos, etc.) sont protégés par les lois en
+          vigueur sur la propriété intellectuelle. Toute reproduction ou
+          représentation sans autorisation écrite est interdite.
         </p>
       </section>
 
@@ -49,20 +48,18 @@ export default function GCU() {
       <section>
         <h2>5. Utilisation du service</h2>
         <p>
-          L'utilisateur s'engage à utiliser l'application de manière loyale et
-          conforme aux règles des jeux proposés. Tout comportement antisportif
-          ou tentative de triche peut entraîner la suspension du compte
-          utilisateur.
+          L'utilisateur est libre d'utiliser et de profiter du contenu de
+          l'application dans la limite du respect du travail de la créatrice du
+          contenu.
         </p>
       </section>
 
       <section>
         <h2>6. Responsabilités</h2>
         <p>
-          Jeux de Cartes s'efforce de fournir un service stable et fiable.
-          Toutefois, la disponibilité permanente du service ne peut être
-          garantie. L'utilisateur utilise l'application sous sa seule
-          responsabilité.
+          CAP s'efforce de fournir un service stable et fiable. Toutefois, la
+          disponibilité permanente du service ne peut être garantie.
+          L'utilisateur utilise l'application sous sa seule responsabilité.
         </p>
       </section>
 
@@ -79,11 +76,7 @@ export default function GCU() {
         <p>
           Pour toute question relative à ces conditions, vous pouvez nous
           contacter à l'adresse :
-          <a href="mailto:contact@jeuxdecartes.com">
-            {" "}
-            contact@jeuxdecartes.com
-          </a>
-          .
+          <a href="mailto:contact@cap.com"> contact@cap.com</a>.
         </p>
       </section>
     </main>

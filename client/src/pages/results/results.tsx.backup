@@ -29,17 +29,17 @@ function Results() {
   const [filteredGames, setFilteredGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // Charger tous les jeux au démarrage
+  
   useEffect(() => {
     fetchGames();
   }, []);
 
-  // Appliquer les filtres quand les jeux sont chargés
+  
   useEffect(() => {
     if (games.length > 0) {
       applyFilters();
     }
-  }, [games]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [games]); 
 
   const fetchGames = async () => {
     setLoading(true);
@@ -63,66 +63,62 @@ function Results() {
 
     let filtered = [...games];
 
+    
     if (type_of) {
-      filtered = filtered.filter((game) => game.type_of === type_of);
-    }
-
-    if (no_material) {
       filtered = filtered.filter((game) =>
-        game.no_material.toLowerCase().includes(no_material.toLowerCase()),
+        game.type_of.toLowerCase().includes(type_of.toLowerCase()),
       );
     }
 
+    
+    if (no_material) {
+      if (no_material === "aucun") {
+        filtered = filtered.filter(
+          (game) =>
+            game.no_material.toLowerCase().includes("aucun") ||
+            game.no_material.toLowerCase().includes("sans") ||
+            game.no_material === "",
+        );
+      }
+    }
+
+    
     if (age_of_audience) {
-      const ageRange = age_of_audience.split("-");
-      if (ageRange.length === 2) {
-        const minAge = Number.parseInt(ageRange[0]);
-        const maxAge = Number.parseInt(ageRange[1]);
+      if (age_of_audience.includes("-")) {
+        const [minAge, maxAge] = age_of_audience.split("-").map(Number);
         filtered = filtered.filter(
           (game) =>
             game.age_of_audience >= minAge && game.age_of_audience <= maxAge,
         );
-      } else if (age_of_audience.includes("+")) {
-        const minAge = Number.parseInt(age_of_audience.replace("+", ""));
-        filtered = filtered.filter((game) => game.age_of_audience >= minAge);
+      } else if (age_of_audience === "18+") {
+        filtered = filtered.filter((game) => game.age_of_audience >= 18);
       }
     }
 
+    
     if (number_of_players) {
-      if (number_of_players.includes("-")) {
-        const playerRange = number_of_players.split("-");
-        const minPlayers = Number.parseInt(playerRange[0]);
-        const maxPlayers = Number.parseInt(playerRange[1]);
+      if (number_of_players === "1") {
+        filtered = filtered.filter((game) => game.number_of_players >= 1);
+      } else if (number_of_players.includes("-")) {
+        const [min, max] = number_of_players.split("-").map(Number);
         filtered = filtered.filter(
           (game) =>
-            game.number_of_players >= minPlayers &&
-            game.number_of_players <= maxPlayers,
+            game.number_of_players >= min && game.number_of_players <= max,
         );
-      } else if (number_of_players.includes("+")) {
-        const minPlayers = Number.parseInt(number_of_players.replace("+", ""));
-        filtered = filtered.filter(
-          (game) => game.number_of_players >= minPlayers,
-        );
-      } else {
-        const exactPlayers = Number.parseInt(number_of_players);
-        filtered = filtered.filter(
-          (game) => game.number_of_players === exactPlayers,
-        );
+      } else if (number_of_players === "10+") {
+        filtered = filtered.filter((game) => game.number_of_players >= 10);
       }
     }
 
+    
     if (duration) {
       if (duration.includes("-")) {
-        const durationRange = duration.split("-");
-        const minDuration = Number.parseInt(durationRange[0]);
-        const maxDuration = Number.parseInt(durationRange[1]);
+        const [min, max] = duration.split("-").map(Number);
         filtered = filtered.filter(
-          (game) =>
-            game.duration >= minDuration && game.duration <= maxDuration,
+          (game) => game.duration >= min && game.duration <= max,
         );
-      } else if (duration.includes("+")) {
-        const minDuration = Number.parseInt(duration.replace("+", ""));
-        filtered = filtered.filter((game) => game.duration >= minDuration);
+      } else if (duration === "60+") {
+        filtered = filtered.filter((game) => game.duration >= 60);
       }
     }
 
@@ -136,7 +132,7 @@ function Results() {
   const downloadGameSheet = async (gameId: number) => {
     try {
       const response = await fetch(
-        `http://localhost:3310/api/pdf/game-sheet/${gameId}`,
+        `http:
         {
           method: "GET",
           headers: {
@@ -172,17 +168,34 @@ function Results() {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="results-container">
+        <div className="loading">Chargement des activités...</div>
+      </div>
+    );
+  }
+
   return (
     <main className="results-container">
-      <button type="button" onClick={goBackToHome} className="back-button">
-        ← Retour à l'accueil
-      </button>
+      <div className="results-header">
+        <h1>Résultats de recherche</h1>
+        <button className="btn-back" onClick={goBackToHome} type="button">
+          ← Nouvelle recherche
+        </button>
+      </div>
 
-      <h1>Résultats de recherche</h1>
+      <div className="results-info">
+        <p>{filteredGames.length} activité(s) trouvée(s)</p>
+      </div>
 
-      {loading ? (
-        <div className="loading">
-          <p>Chargement des activités...</p>
+      {filteredGames.length === 0 ? (
+        <div className="no-results">
+          <h2>Aucune activité trouvée</h2>
+          <p>Essayez de modifier vos critères de recherche.</p>
+          <button className="btn-retry" onClick={goBackToHome} type="button">
+            Essayer une nouvelle recherche
+          </button>
         </div>
       ) : (
         <div className="activities-grid">
@@ -214,7 +227,7 @@ function Results() {
 
               <div className="activity-objectives">
                 <h4>Objectifs :</h4>
-                {game.main_objective_1 && <p>• {game.main_objective_1}</p>}
+                <p>• {game.main_objective_1}</p>
                 {game.main_objective_2 && <p>• {game.main_objective_2}</p>}
                 {game.main_objective_3 && <p>• {game.main_objective_3}</p>}
               </div>

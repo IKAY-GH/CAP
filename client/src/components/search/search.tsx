@@ -27,7 +27,6 @@ function Search() {
       try {
         setLoading(true);
 
-        // Construire l'URL avec les paramètres de recherche
         const queryParams = new URLSearchParams();
         for (const [key, value] of searchParams.entries()) {
           if (value) {
