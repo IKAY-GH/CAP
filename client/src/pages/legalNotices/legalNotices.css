@@ -1,38 +1,108 @@
-.erreur-page {
+.legal-container {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  color: #40e0d0;
-  font-family: "RetroGaming", monospace;
+  padding: 80px 1rem 100px 1rem;
+  background: transparent;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: var(--font-family);
+  color: #3b3b3b;
+}
+
+.legal-container h1 {
+  font-family: "PiecesOfEight", serif;
+  color: #3b3b3b;
+  font-size: 2.5rem;
   text-align: center;
-  padding: 20px;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.erreur-page h1 {
-  font-size: 10rem;
-  margin-bottom: 20px;
+.legal-container section {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 2px solid #ffb733;
 }
 
-.erreur-page p {
-  font-size: 2rem;
-  margin-bottom: 40px;
-}
-
-.erreur-button {
+.legal-container h2 {
+  color: #f57336;
   font-size: 1.5rem;
-  padding: 15px 30px;
-  background-color: #ff8000;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  text-decoration: none;
-  box-shadow: 0 0 10px red, 0 0 5px red inset;
+  margin-bottom: 1rem;
+  font-weight: 600;
 }
 
-.erreur-button:hover {
-  background-color: orange;
-  box-shadow: 0 0 15px red, 0 0 7px red inset;
+.legal-container p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.legal-container p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-container a {
+  color: #f57336;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.legal-container a:hover {
+  color: #e55a28;
+  text-decoration: underline;
+}
+
+.legal-container strong {
+  color: #3b3b3b;
+  font-weight: 600;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .legal-container {
+    padding: 80px 0.5rem 100px 0.5rem;
+  }
+
+  .legal-container h1 {
+    font-size: 2rem;
+  }
+
+  .legal-container section {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .legal-container h2 {
+    font-size: 1.3rem;
+  }
+
+  .legal-container p {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .legal-container {
+    max-width: 1000px;
+    padding: 100px 2rem 120px 2rem;
+  }
+
+  .legal-container h1 {
+    font-size: 3rem;
+  }
+
+  .legal-container section {
+    padding: 2rem;
+  }
+
+  .legal-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .legal-container p {
+    font-size: 1.1rem;
+  }
 }

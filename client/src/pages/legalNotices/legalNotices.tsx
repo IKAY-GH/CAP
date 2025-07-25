@@ -8,14 +8,12 @@ export default function LegalNotices() {
       <section>
         <h2>Éditeur du site</h2>
         <p>
-          Le site <strong>Street Art Hunter</strong> est édité par une équipe
-          indépendante de passionné·es d’art urbain.
+          Le site <strong>CAP</strong> est édité par CAYUELA Annick développeuse
+          web junior.
         </p>
         <p>
           Email :{" "}
-          <a href="mailto:contact@streetarthunter.com">
-            contact@streetarthunter.com
-          </a>
+          <a href="mailto:contact@streetarthunter.com">contact@cap.com</a>
         </p>
       </section>
 
@@ -24,18 +22,7 @@ export default function LegalNotices() {
         <p>
           Le site est hébergé par :
           <br />
-          <strong>On ne sait pas encore</strong>
-          <br />
-          rue des dev en formations tarte au citron
-          <br />
-          Site web :{" "}
-          <a
-            href="https://www.infomaniak.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            infomaniak.com
-          </a>
+          <strong>Indéfini</strong>
         </p>
       </section>
 
@@ -50,11 +37,7 @@ export default function LegalNotices() {
 
       <section>
         <h2>Crédits</h2>
-        <p>
-          Certaines œuvres photographiées ou cartographiées sur ce site restent
-          la propriété de leurs auteur·es respectif·ves. En cas de demande de
-          retrait, merci de me contacter.
-        </p>
+        <p>Les activités de ce site sont libres d'exploitation.</p>
       </section>
 
       <section>

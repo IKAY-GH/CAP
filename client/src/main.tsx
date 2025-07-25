@@ -54,12 +54,12 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/MentionsLegales",
+        path: "/mentions-legales",
         element: <LegalNotices />,
       },
 
       {
-        path: "/Creatrice",
+        path: "/creator",
         element: <Creator />,
       },
       {
