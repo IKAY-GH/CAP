@@ -43,40 +43,46 @@ function SignIn() {
   };
 
   return (
-    <main className="signIn-container">
+    <main className="connexion-container">
       {isLoggedIn ? (
-        <div className="welcom-message">
-          <p>Bienvenue, {userEmail} !</p>
-          <button
-            className="btn-deconnection"
-            type="button"
-            onClick={handleLogout}
-          >
-            Deconnection
-          </button>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="email">Email</label>
-          <input {...register("email")} type="email" id="email" required />
-          {errors.email && <p className="form-error">{errors.email.message}</p>}
-
-          <label htmlFor="password">Mot de passe</label>
-          <input
-            {...register("password")}
-            type="password"
-            id="password"
-            required
-          />
-          {errors.password && (
-            <p className="form-error">{errors.password.message}</p>
-          )}
-          <div>
-            <button id="btn-signIn" type="submit">
-              Connexion
+        <div className="connexion-form">
+          <div className="welcom-message">
+            <h2>Bienvenue !</h2>
+            <p>Vous êtes connecté(e) en tant que {userEmail}</p>
+            <button
+              className="btn-deconnection"
+              type="button"
+              onClick={handleLogout}
+            >
+              Déconnexion
             </button>
           </div>
-        </form>
+        </div>
+      ) : (
+        <div className="connexion-form">
+          <h2>Connexion</h2>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <label htmlFor="email">Email</label>
+            <input {...register("email")} type="email" id="email" required />
+            {errors.email && (
+              <p className="form-error">{errors.email.message}</p>
+            )}
+
+            <label htmlFor="password">Mot de passe</label>
+            <input
+              {...register("password")}
+              type="password"
+              id="password"
+              required
+            />
+            {errors.password && (
+              <p className="form-error">{errors.password.message}</p>
+            )}
+            <button id="btn-connexion" type="submit">
+              Connexion
+            </button>
+          </form>
+        </div>
       )}
     </main>
   );
