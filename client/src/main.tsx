@@ -10,6 +10,7 @@ import Error404 from "./pages/error/error404.tsx";
 import GCU from "./pages/gcu/gcu.tsx";
 import Home from "./pages/home/home";
 import LegalNotices from "./pages/legalNotices/legalNotices";
+import Results from "./pages/results/results";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+
+      {
+        path: "/results",
+        element: <Results />,
       },
 
       {
