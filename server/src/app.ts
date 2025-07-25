@@ -1,5 +1,4 @@
 // Load the express module to create a web application
-
 import express from "express";
 
 const app = express();
@@ -52,7 +51,7 @@ app.use(
 
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
-// app.use(express.json());
+app.use(express.json());
 // app.use(express.urlencoded());
 // app.use(express.text());
 // app.use(express.raw());
